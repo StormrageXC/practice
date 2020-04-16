@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        div {
+            color: rebeccapurple;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='1'>d</div>
+    <script>
+        function Fn() {
+            nameIt = function () {
+                console.log(1)
+            }
+            return this
+        }
+        Fn.nameIt = function () {
+            console.log(2)
+        }
+        Fn.prototype.nameIt = function () {
+            console.log(3)
+        }
+        var nameIt = function () {
+            console.log(4)
+        }
+        function nameIt() {
+            console.log(5)
+        }
+        Fn.nameIt(); // 2
+        nameIt(); //4
+        Fn().nameIt(); //1
+        nameIt() // 1
+        new Fn.nameIt(); //2
+        new Fn().nameIt(); //3
+        var s = new new Fn().nameIt(); // 3
+    </script>
+</body>
+
+</html>
