@@ -3,26 +3,20 @@ const http = require('http'),
 http.createServer((req, res) => {
     getTitle(res);
 }).listen(8000, () => {
-    console.log('hello')
+    console.log('server start')
 });
 
 function getTitle(res) {
     fs.readFile('./title.json', (err, data) => {
-        if (err) {
-            hadError(err, res);
-        } else {
-            getTemplate(JSON.parse(data.toString()), res);
-        }
+        if (err) return hadError(err, res);
+        getTemplate(JSON.parse(data.toString()), res);
     })
 }
 
 function getTemplate(titles, res) {
     fs.readFile('./callback_tempalte.html', (err, data) => {
-        if (err) {
-            hadError(err, res);
-        } else {
-            formatHtml(titles, data.toString(), res);
-        }
+        if (err) return hadError(err, res);
+        formatHtml(titles, data.toString(), res);
     })
 }
 
