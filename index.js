@@ -6,13 +6,21 @@ const express = require('express'),
 app.set('port', process.env.PORT || 3000);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use('/css/bootstrap.css', express.static('node_modules/bootstrap/dist/css/bootstrap.css'));
 app.get('/', (req, res, next) => {
     res.send('It is ok');
 });
 app.get('/articles', (req, res, next) => {
     Article.all((err, articles) => {
         if (err) return next(err);
-        res.send(articles);
+        res.format({
+            html: () => {
+                res.render('articles.ejs', { articles: articles });
+            },
+            json: () => {
+                res.send(articles);
+            }
+        });
     });
 });
 app.get('/articles/:id', (req, res, next) => {
