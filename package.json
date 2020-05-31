@@ -3,10 +3,11 @@
     "version": "1.0.0",
     "main": "index.js",
     "scripts": {
-        "start": "set PORT=8080 && node index.js",
+        "start": "./node_modules/.bin/webpack && set PORT=8080 && node index.js",
         "debug": "set PORT=8080 && node --inspect-brk index.js",
         "babel": "./node_modules/.bin/babel db.js -d build/",
-        "uglify": "./node_modules/.bin/uglifyjs build/db.js -o build/db.min.js"
+        "uglify": "./node_modules/.bin/uglifyjs build/db.js -o build/db.min.js",
+        "server:dev": "webpack-dev-server --hot -inline--content-base --port 3001"
     },
     "keywords": [],
     "author": "Illidan Stormrage",
@@ -25,14 +26,19 @@
         "@babel/preset-env": "^7.3.1",
         "@babel/preset-react": "^7.0.0",
         "babel-cli": "^6.26.0",
+        "babel-loader": "^8.1.0",
         "babel-preset-env": "^1.7.0",
         "gulp": "^4.0.2",
         "gulp-babel": "^8.0.0",
         "gulp-concat": "^2.6.1",
         "gulp-sourcemaps": "^2.6.5",
+        "gulp-watch": "^5.0.1",
         "react": "^16.13.1",
         "react-dom": "^16.13.1",
-        "uglify-es": "^3.3.9"
+        "uglify-es": "^3.3.9",
+        "webpack": "^3.8.1",
+        "webpack-cli": "^3.3.1",
+        "webpack-dev-server": "^1.14.1"
     },
     "description": ""
 }
