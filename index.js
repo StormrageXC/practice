@@ -23,6 +23,7 @@ app.get('/articles', (req, res, next) => {
         });
     });
 });
+
 app.get('/articles/:id', (req, res, next) => {
     const id = req.params.id;
     Article.find(id, (err, article) => {
